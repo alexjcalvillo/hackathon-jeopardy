@@ -5,15 +5,15 @@ import GameCard from './GameBoard_components/GameCard'
 const GameBoardView = () => {
 const Cards =
             [
-                <GameCard Category="dogs" />, 
-                <GameCard 
+                <GameCard Category="dogs" />,
+                <GameCard
                     Question="This dog is spotted and often referred to in movie containing the number 101"
                     PointValue="100"
                     Answer="Dalmation"
-                />, 
-                <GameCard />, 
-                <GameCard />, 
-                <GameCard />, 
+                />,
+                <GameCard />,
+                <GameCard />,
+                <GameCard />,
                 <GameCard />
             ];
     return (
