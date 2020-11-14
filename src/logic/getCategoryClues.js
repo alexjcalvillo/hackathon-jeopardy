@@ -1,18 +1,3 @@
-import jService from '../api/jService';
-import generateCategoryIdSet from './logic';
-
-const ids = generateCategoryIdSet();
-
-// const getCategory = async () => {
-//   const { data } = await jService.get('/', {
-//     params: {
-//       id: ids[0],
-//     },
-//   });
-
-//   return filterCluesWithValues(data.clues, data.title);
-// };
-
 const filterCluesWithValues = (clues, category) => {
   const validClues = clues.filter((clue) => {
     return clue.value;
