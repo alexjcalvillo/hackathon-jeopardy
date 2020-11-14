@@ -1,13 +1,21 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import LandingView from './components/views/LandingView';
+import GameBoardView from './components/views/GameBoardView/GameBoardView';
+import LandingView from './components/views/LandingPageView/LandingView';
 
 function App() {
   return (
-    <div className="bg-blue-600 container mx-auto text-center">
-      <Switch>
-        <Route exact path="/" component={LandingView} />
-      </Switch>
+    <div className="flex bg-blue-600 justify-center items-center container mx-auto my-8 h-full text-center">
+      <div className="flex justify-center items-center w-full">
+        <div className="w-full mx-16">
+          <div className="flex space-x-10 border rounded h-full px-24 py-10 justify-between">
+            <Switch>
+              <Route exact path="/" component={LandingView} />
+              <Route exact path="/play" component={GameBoardView} />
+            </Switch>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
