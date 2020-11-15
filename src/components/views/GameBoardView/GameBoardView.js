@@ -7,7 +7,7 @@ const Cards =
             [
                 <GameCard Category="dogs" />,
                 <GameCard
-                    Question="This dog is spotted and often referred to in movie containing the number 101"
+                    Question="This dog is spotted and often referred to in a certain movie containing the number 101"
                     PointValue="100"
                     Answer="Dalmation"
                 />,
