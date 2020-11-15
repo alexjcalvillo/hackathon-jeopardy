@@ -3,7 +3,7 @@
 const generateCategoryIdSet = () => {
   const columnCategoryIds = new Set();
 
-  while (columnCategoryIds.size < 5) {
+  while (columnCategoryIds.size < 6) {
     // Note: there are much more than 100 categories available in jService.
     columnCategoryIds.add(Math.floor(Math.random() * 100) + 1);
   }
