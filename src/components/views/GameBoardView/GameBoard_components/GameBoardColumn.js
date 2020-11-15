@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import GameCard from './GameCard';
 
-const GameBoardColumn = ({ Cards, getClues }) => {
-  const [clues, setClues] = useState([]);
-  const [category, setCategory] = useState('');
+const GameBoardColumn = ({ Cards }) => {
+    return (
+        <div className="w-1/6">
+            {Cards}
+        </div>
+    )
+}
 
   useEffect(() => {
     const { cat, clue } = getClues();

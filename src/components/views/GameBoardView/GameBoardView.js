@@ -40,24 +40,21 @@ const GameBoardView = () => {
     // setClues(clueColumn);
   };
 
-  const columns = clues.map((item, index) => {
-    return <GameCard Category={category} key={index} clues={item.question} />;
-  });
-
-  console.log(clues);
-
-  const Cards = [
-    <GameCard Category="dogs" />,
-    <GameCard
-      Question="This dog is spotted and often referred to in movie containing the number 101"
-      PointValue="100"
-      Answer="Dalmation"
-    />,
-    <GameCard />,
-    <GameCard />,
-    <GameCard />,
-    <GameCard />,
-  ];
+  const Cards =
+    [
+        <GameCard Type="Category" Category="Dogs" />,
+        <GameCard
+            Type="Question"
+            Category="dogs"
+            Question="This dog is spotted and often referred to in a certain movie containing the number 101"
+            PointValue="100"
+            Answer="Dalmation"
+        />,
+        <GameCard />,
+        <GameCard />,
+        <GameCard />,
+        <GameCard />
+    ];
   return (
     <div className="flex justify-between items-center w-full space-x-4">
       {/* <h1>Game Board Goes Here</h1> */}
