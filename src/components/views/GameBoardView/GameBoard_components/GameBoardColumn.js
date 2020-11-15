@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GameBoardColumn = ({ Cards}) => {
+const GameBoardColumn = ({ Cards }) => {
     return (
         <div className="w-1/6">
             {Cards}
