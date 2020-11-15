@@ -5,8 +5,10 @@ import GameCard from './GameBoard_components/GameCard'
 const GameBoardView = () => {
 const Cards =
             [
-                <GameCard Category="dogs" />,
+                <GameCard Type="Category" Category="Dogs" />,
                 <GameCard
+                    Type="Question"
+                    Category="dogs"
                     Question="This dog is spotted and often referred to in a certain movie containing the number 101"
                     PointValue="100"
                     Answer="Dalmation"

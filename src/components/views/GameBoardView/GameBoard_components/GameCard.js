@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ActionButton from '../../../helpers/ActionButton';
 
-const GameCard = ({Category, Question, Answer, PointValue}) => {
+const GameCard = ({Type, Category, Question, Answer, PointValue}) => {
     const outside = useRef();
     const [isOpen, setIsOpen] = useState(false);
     useEffect(() => {
@@ -19,7 +19,7 @@ const GameCard = ({Category, Question, Answer, PointValue}) => {
             setIsOpen(false);
         }
     }
-    const displayTitle = Category ? Category : PointValue;
+    const displayTitle = Type === 'Category' ? Category : PointValue;
     
     return (
         <>
@@ -28,7 +28,7 @@ const GameCard = ({Category, Question, Answer, PointValue}) => {
             {/* This div contains a ref to the node which the modal is contained to
                 allowing the user to click inside, but close the modal when clicking outside */}
             <div ref={outside}>
-                <div onClick={() => setIsOpen(!isOpen)} className="border border-gray-500 rounded h-24 w-32 p-4 m-2 hover:border-white">
+                <div onClick={() => Type === 'Question' ? setIsOpen(!isOpen) : null} className="border border-gray-500 rounded h-24 w-32 p-4 m-2 hover:border-white">
                     {displayTitle}
                 </div>
                 {isOpen ?
