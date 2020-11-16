@@ -5,6 +5,7 @@ import GameCard from './GameBoard_components/GameCard';
 import jService from '../../../api/jService';
 import filterCluesWithValues from '../../../logic/getCategoryClues';
 import generateCategoryIdSet from '../../../logic/generateCategoryIdSet';
+import ScoreBoard from './GameBoard_components/ScoreBoard';
 
 const GameBoardView = () => {
   // each GameCard component should recieve getClues as a prop.
@@ -44,8 +45,7 @@ const GameBoardView = () => {
     ];
   return (
     <div className="flex justify-between items-center w-full space-x-4">
-      {/* <h1>Game Board Goes Here</h1> */}
-      {/* <GameCard /> */}
+      <ScoreBoard />
       <GameBoardColumn Cards={Cards} getClues={getClues} />
       <GameBoardColumn Cards={Cards} getClues={getClues} />
       <GameBoardColumn Cards={Cards} getClues={getClues} />
