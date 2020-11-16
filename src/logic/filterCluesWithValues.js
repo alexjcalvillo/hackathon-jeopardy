@@ -5,7 +5,16 @@ const filterCluesWithValues = (clues, category) => {
     return clue.value;
   });
 
+  // return filterCluesUnder5Questions(validClues, category);
   return sortCluesByValue(validClues, category);
+};
+
+const filterCluesUnder5Questions = (clues, category) => {
+  const enoughClues = clues.filter((clues) => {
+    return clues.length > 10;
+  });
+
+  return sortCluesByValue(enoughClues, category);
 };
 
 const sortCluesByValue = (clues, category) => {

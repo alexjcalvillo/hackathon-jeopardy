@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-import filterCluesWithValues from '../../logic/getCategoryClues';
+import filterCluesWithValues from '../../logic/filterCluesWithValues';
 
 function* workerSaga(action) {
   try {

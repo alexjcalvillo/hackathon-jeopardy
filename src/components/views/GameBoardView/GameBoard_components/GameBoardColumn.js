@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import jService from '../../../../api/jService';
-import filterCluesWithValues from '../../../../logic/getCategoryClues';
+import filterCluesWithValues from '../../../../logic/filterCluesWithValues';
 import GameCard from './GameCard';
 
 const GameBoardColumn = ({ categoryID }) => {
   const [category, setCategory] = useState('');
   const [clues, setClues] = useState([]);
-
-  console.log('Here is my categoryID: ', categoryID);
 
   useEffect(() => {
     getClues(categoryID);
@@ -33,6 +31,10 @@ const GameBoardColumn = ({ categoryID }) => {
   };
 
   const renderedCards = clues.map((clue, index) => {
+    if (!clue) {
+      console.log('Not enough clues for CategoryID', categoryID);
+      return <p key={index}>oops no clue!</p>;
+    }
     return (
       <GameCard
         key={index}
@@ -45,26 +47,16 @@ const GameBoardColumn = ({ categoryID }) => {
     );
   });
 
-  //   const Cards = [
-  //     <GameCard Type="Category" Category="Dogs" />,
-  //     <GameCard
-  //       Type="Question"
-  //       Category="dogs"
-  //       Question="This dog is spotted and often referred to in a certain movie containing the number 101"
-  //       PointValue="100"
-  //       Answer="Dalmation"
-  //     />,
-  //     <GameCard />,
-  //     <GameCard />,
-  //     <GameCard />,
-  //     <GameCard />,
-  //   ];
+  if (!category) {
+    return <div className="w-1/6">Still Loading!</div>;
+  }
 
-  //   const columns = clues.map((item, index) => {
-  //     return <GameCard Category={category} key={index} clues={item.question} />;
-  //   });
-
-  return <div className="w-1/6">{renderedCards}</div>;
+  return (
+    <div className="w-1/6">
+      <GameCard Type="Category" Category={category} />
+      {renderedCards}
+    </div>
+  );
 };
 
 export default GameBoardColumn;
