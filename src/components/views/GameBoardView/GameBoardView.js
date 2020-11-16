@@ -35,7 +35,7 @@ const GameBoardView = () => {
             Type="Question"
             Category="dogs"
             Question="This dog is spotted and often referred to in a certain movie containing the number 101"
-            PointValue="100"
+            PointValue={100}
             Answer="Dalmation"
         />,
         <GameCard />,

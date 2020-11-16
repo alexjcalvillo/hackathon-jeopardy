@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import ActionButton from '../../../helpers/ActionButton';
+import { changeScore } from '../../../../actions/countScore';
 
-const QuestionModal = ({Question, Answer}) => {
+const QuestionModal = ({Question, Answer, PointValue, complete, open}) => {
     const [answer, setAnswer] = useState('');
+    const dispatch = useDispatch();
 
     const handleChange = () => (event) => {
         setAnswer(event.target.value);
@@ -13,14 +16,22 @@ const QuestionModal = ({Question, Answer}) => {
             alert('Please enter your answer, then submit.');
             return;
         }
+        const answerStatus = checkAnswer();
+        dispatch(changeScore({ answerStatus, PointValue }));
+        complete();
+        open(false);
+    }
+
+    const checkAnswer = () => {
         const answerCheck = answer.toLowerCase().split(' ');
-        if (answerCheck.includes(Answer.toLowerCase().split(' '))) {
-            console.log(true);
+        console.log(answerCheck.includes(Answer.toLowerCase()));
+        if (answerCheck.includes(Answer.toLowerCase())) {
+            return true;
         } else {
-            console.log(false);
+            return false;
         }
     }
-    console.log(Question, Answer);
+    console.log(Question, Answer, PointValue);
     return (
         <div style={modal} className="bg-blue-500 border rounded p-16 w-1/2 font-thin text-3xl text-center text-white">
             <h1>{Question}</h1>
@@ -30,7 +41,7 @@ const QuestionModal = ({Question, Answer}) => {
                 type="text"
                 placeholder="Please answer here..."
                 onChange={handleChange()}
-            />?
+            /><span>?</span>
             <div onClick={() => submitAnswer()}>
                 <ActionButton text="Submit answer" />
             </div>
