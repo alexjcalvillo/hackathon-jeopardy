@@ -13,7 +13,7 @@ const GameBoardColumn = ({ categoryID }) => {
 
   const getClues = async (categoryID) => {
     try {
-      const { data } = await jService.get('/', {
+      const { data } = await jService.get('/category', {
         params: {
           id: categoryID,
         },
@@ -33,7 +33,7 @@ const GameBoardColumn = ({ categoryID }) => {
   const renderedCards = clues.map((clue, index) => {
     if (!clue) {
       console.log('Not enough clues for CategoryID', categoryID);
-      return <p key={index}>oops no clue!</p>;
+      return <GameCard key={index} PointValue="100" />;
     }
     return (
       <GameCard

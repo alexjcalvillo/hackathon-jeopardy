@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { connect } from 'react-redux';
 
@@ -17,7 +17,7 @@ const GameBoardView = () => {
   return (
     <div className="flex justify-between items-center w-full space-x-4">
       {/* <h1>Game Board Goes Here</h1> */}
-
+      <ScoreBoard />
       {columns}
     </div>
   );
