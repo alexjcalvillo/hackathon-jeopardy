@@ -1,9 +1,20 @@
+// Filters out clues without value points
+
 const filterCluesWithValues = (clues, category) => {
   const validClues = clues.filter((clue) => {
     return clue.value;
   });
 
+  // return filterCluesUnder5Questions(validClues, category);
   return sortCluesByValue(validClues, category);
+};
+
+const filterCluesUnder5Questions = (clues, category) => {
+  const enoughClues = clues.filter((clues) => {
+    return clues.length > 10;
+  });
+
+  return sortCluesByValue(enoughClues, category);
 };
 
 const sortCluesByValue = (clues, category) => {
@@ -13,7 +24,6 @@ const sortCluesByValue = (clues, category) => {
     300: [],
     400: [],
     500: [],
-    600: [],
   };
 
   for (let clue of clues) {
@@ -33,9 +43,6 @@ const sortCluesByValue = (clues, category) => {
       case 500:
         sortedClues[500].push(clue);
         break;
-      case 600:
-        sortedClues[600].push(clue);
-        break;
       default:
         break;
     }
@@ -44,11 +51,16 @@ const sortCluesByValue = (clues, category) => {
   return selectCategoryClues(sortedClues, category);
 };
 
+// Limits each category to one clue per point value
 const selectCategoryClues = (sortedClues, category) => {
   const clueColumn = [];
 
   for (let level of Object.entries(sortedClues)) {
-    clueColumn.push(level[1][Math.floor(Math.random() * level[1].length)]);
+    if (level[1].length > 2) {
+      clueColumn.push(level[1][0]);
+    } else {
+      clueColumn.push(level[1][Math.floor(Math.random() * level[1].length)]);
+    }
   }
 
   return {
