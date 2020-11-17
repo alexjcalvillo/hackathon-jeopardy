@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import GameBoardView from './components/views/GameBoardView/GameBoardView';
+import ScoreBoard from './components/views/GameBoardView/GameBoard_components/ScoreBoard';
 import LandingView from './components/views/LandingPageView/LandingView';
 
 function App() {

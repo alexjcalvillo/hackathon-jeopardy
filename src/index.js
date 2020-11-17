@@ -14,6 +14,7 @@ import AppRouter from './routers/AppRouter';
 // TailwindCSS config import
 import './styles/tailwind.css';
 
+
 const sagaMiddleware = createSagaMiddleware();
 
 const middlewareList = [sagaMiddleware, logger];

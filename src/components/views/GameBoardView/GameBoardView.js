@@ -1,19 +1,14 @@
 import React, { useEffect } from 'react';
 
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 
 import GameBoardColumn from './GameBoard_components/GameBoardColumn';
 
 import generateCategoryIdSet from '../../../logic/generateCategoryIdSet';
+import ScoreBoard from './GameBoard_components/ScoreBoard';
 
 const GameBoardView = () => {
-  const dispatch = useDispatch();
-
   const ids = generateCategoryIdSet();
-
-  useEffect(() => {
-    // dispatch({ type: 'GET_COLUMN_1', payload: ids[1] });
-  }, []);
 
   const columns = ids.map((item, index) => {
     return <GameBoardColumn categoryID={item} key={index} />;
