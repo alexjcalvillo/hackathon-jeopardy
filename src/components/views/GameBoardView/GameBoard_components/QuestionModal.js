@@ -13,10 +13,10 @@ const QuestionModal = ({Question, Answer, PointValue, complete, open}) => {
     }
 
     const submitAnswer = () => {
-        if (answer === '') {
-            alert('Please enter your answer, then submit.');
-            return;
-        }
+        // if (answer === '') {
+        //     alert('Please enter your answer, then submit.');
+        //     return;
+        // }
         const answerStatus = checkAnswer();
         dispatch(changeScore({ answerStatus, PointValue }));
         complete();
@@ -30,6 +30,12 @@ const QuestionModal = ({Question, Answer, PointValue, complete, open}) => {
             return true;
         } else {
             return false;
+        }
+    }
+
+    const checkTimer = (minutes, seconds) => {
+        if (minutes === 0 && seconds === 0) {
+            submitAnswer();
         }
     }
     console.log(Question, Answer, PointValue);
@@ -46,7 +52,7 @@ const QuestionModal = ({Question, Answer, PointValue, complete, open}) => {
             <div onClick={() => submitAnswer()}>
                 <ActionButton text="Submit answer" />
             </div>
-            <Timer />
+            <Timer time={(minutes, seconds) => checkTimer(minutes, seconds)} />
         </div>
     )
 }
