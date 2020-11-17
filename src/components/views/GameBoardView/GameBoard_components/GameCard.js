@@ -39,9 +39,12 @@ const GameCard = ({Type, Category, Question, Answer, PointValue}) => {
                     </div>
                 )
                 :
-                (<div onClick={() => Type === 'Question' ? setIsOpen(!isOpen) : null} className="flex items-center justify-center border border-gray-500 rounded h-24 w-32 p-4 m-2 text-xl hover:border-white">
-                    {displayTitle}
-                </div>)}
+                (
+                    <div onClick={() => Type === 'Question' ? setIsOpen(!isOpen) : null} className="flex items-center justify-center border border-gray-500 rounded h-24 w-32 p-4 m-2 text-xl hover:border-white">
+                        {displayTitle}
+                    </div>
+                )
+                }
                 {isOpen ?
                         <QuestionModal Question={Question} Answer={Answer} PointValue={PointValue} complete={() => handleComplete()} open={() => setIsOpen()} />
                         : null
