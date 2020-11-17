@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ActionButton from '../../../helpers/ActionButton';
 import { changeScore } from '../../../../actions/countScore';
+import Timer from './Timer';
 
 const QuestionModal = ({Question, Answer, PointValue, complete, open}) => {
     const [answer, setAnswer] = useState('');
@@ -45,6 +46,7 @@ const QuestionModal = ({Question, Answer, PointValue, complete, open}) => {
             <div onClick={() => submitAnswer()}>
                 <ActionButton text="Submit answer" />
             </div>
+            <Timer />
         </div>
     )
 }
