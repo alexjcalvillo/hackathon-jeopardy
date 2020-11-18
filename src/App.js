@@ -1,7 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import GameBoardView from './components/views/GameBoardView/GameBoardView';
-import ScoreBoard from './components/views/GameBoardView/GameBoard_components/ScoreBoard';
 import LandingView from './components/views/LandingPageView/LandingView';
 
 function App() {
@@ -12,7 +11,7 @@ function App() {
           <div className="flex space-x-10 border rounded h-full px-24 py-10 justify-between">
             <Switch>
               <Route exact path="/" component={LandingView} />
-              <Route exact path="/play" component={GameBoardView} />
+              <Route exact path="/round/:number" component={GameBoardView} />
             </Switch>
           </div>
         </div>

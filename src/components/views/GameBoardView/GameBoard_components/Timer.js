@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 class Timer extends Component {
     state = {
-        minutes: 0,
-        seconds: 35
+        minutes: this.props.minutes,
+        seconds: this.props.seconds
     }
 
     componentDidMount() {
@@ -36,9 +36,9 @@ class Timer extends Component {
     render() {
         const { minutes, seconds } = this.state;
         return (
-            <div>
+            <div style={this.props.class}>
                 {minutes === 0 && seconds === 0 ?
-                <h1>Busted!</h1> :
+                <h1>Times Up!</h1> :
                 (<p>Timer: {minutes} : {seconds < 10 ? `0${seconds}` : seconds}</p>)}
             </div>
         )

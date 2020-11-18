@@ -13,6 +13,12 @@ const GameCard = ({Type, Category, Question, Answer, PointValue}) => {
         }
     }, []);
 
+    useEffect(() => {
+        return () => {
+            setComplete(false);
+        }
+    }, [Question]);
+
     const handleClick = (event) => {
         if (outside.current.contains(event.target)) {
             return;
@@ -24,7 +30,6 @@ const GameCard = ({Type, Category, Question, Answer, PointValue}) => {
     const handleComplete = () => {
         setComplete(true);
     }
-    console.log(complete);
     return (
         <>
             {/* This div is to create tinted background when modal opens*/}

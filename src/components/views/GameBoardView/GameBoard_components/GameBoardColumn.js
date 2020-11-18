@@ -3,13 +3,13 @@ import jService from '../../../../api/jService';
 import filterCluesWithValues from '../../../../logic/filterCluesWithValues';
 import GameCard from './GameCard';
 
-const GameBoardColumn = ({ categoryID }) => {
+const GameBoardColumn = ({ categoryID, round }) => {
   const [category, setCategory] = useState('');
   const [clues, setClues] = useState([]);
 
   useEffect(() => {
     getClues(categoryID);
-  }, []);
+  }, [round]);
 
   const getClues = async (categoryID) => {
     try {
@@ -33,7 +33,7 @@ const GameBoardColumn = ({ categoryID }) => {
   const renderedCards = clues.map((clue, index) => {
     if (!clue) {
       console.log('Not enough clues for CategoryID', categoryID);
-      return <p key={index}>oops no clue!</p>;
+      return <GameCard key={index} PointValue="oops no clue!" />;
     }
     return (
       <GameCard
@@ -41,7 +41,7 @@ const GameBoardColumn = ({ categoryID }) => {
         Type="Question"
         Category={category}
         Question={clue.question}
-        PointValue={clue.value}
+        PointValue={clue.value * round}
         Answer={clue.answer}
       />
     );

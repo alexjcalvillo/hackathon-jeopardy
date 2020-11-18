@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import ActionButton from '../../../helpers/ActionButton';
 import { changeScore } from '../../../../actions/countScore';
 import Timer from './Timer';
+import { findKeywords, determineAnswerMatch } from '../../../../logic/determineAnswerMatch';
 
 const QuestionModal = ({Question, Answer, PointValue, complete, open}) => {
     const [answer, setAnswer] = useState('');
@@ -13,10 +14,6 @@ const QuestionModal = ({Question, Answer, PointValue, complete, open}) => {
     }
 
     const submitAnswer = () => {
-        // if (answer === '') {
-        //     alert('Please enter your answer, then submit.');
-        //     return;
-        // }
         const answerStatus = checkAnswer();
         dispatch(changeScore({ answerStatus, PointValue }));
         complete();
@@ -24,21 +21,18 @@ const QuestionModal = ({Question, Answer, PointValue, complete, open}) => {
     }
 
     const checkAnswer = () => {
-        const answerCheck = answer.toLowerCase().split(' ');
-        console.log(answerCheck.includes(Answer.toLowerCase()));
-        if (answerCheck.includes(Answer.toLowerCase())) {
-            return true;
-        } else {
-            return false;
-        }
+        const keywords = findKeywords(Answer.toLowerCase());
+        const answerWords = findKeywords(answer.toLowerCase());
+        return determineAnswerMatch(keywords, answerWords);
     }
 
     const checkTimer = (minutes, seconds) => {
         if (minutes === 0 && seconds === 0) {
-            submitAnswer();
+            complete();
+            open(false);
         }
     }
-    console.log(Question, Answer, PointValue);
+
     return (
         <div style={modal} className="bg-blue-500 border rounded p-16 w-1/2 font-thin text-3xl text-center text-white">
             <h1>{Question}</h1>
@@ -52,7 +46,7 @@ const QuestionModal = ({Question, Answer, PointValue, complete, open}) => {
             <div onClick={() => submitAnswer()}>
                 <ActionButton text="Submit answer" />
             </div>
-            <Timer time={(minutes, seconds) => checkTimer(minutes, seconds)} />
+            <Timer time={(minutes, seconds) => checkTimer(minutes, seconds)} minutes={0} seconds={35} />
         </div>
     )
 }
