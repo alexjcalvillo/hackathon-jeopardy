@@ -15,16 +15,16 @@ import { setScore } from '../../../actions/countScore';
 const GameBoardView = (props) => {
   const ids = generateCategoryIdSet();
   const round = useSelector(state => state.round);
-  const currScore = useSelector(state => state.score);
+  const score = useSelector(state => state.score);
   const dispatch = useDispatch();
   const { number } = useParams();
   const history = useHistory();
-  const timerLength = 1000 * 60 * 6.5;
+  const timerLength = 1000 * 20// 1000 * 60 * 6.5;
 
   useEffect(() => {
     const roundTimer = setInterval(() => {
-      if (round >= 3) {
-        return;
+      if (round === 2) {
+        history.push('/finaljeopardy');
       } else {
         roundEnd();
       }
@@ -39,15 +39,13 @@ const GameBoardView = (props) => {
   });
 
   const roundEnd = () => {
+    console.log(score);
     dispatch(endRound());
-    dispatch(setScore(currScore));
     history.push(`/round/${round + 1}`);
   }
-  console.log(round, parseInt(number), currScore);
   return (
     <div className="flex justify-between items-center w-full space-x-4">
-      {/* <Timer minutes={6} seconds={30} class={{display: 'hidden'}} time={() => roundEnd()} /> */}
-      <ScoreBoard currScore={currScore} />
+      <ScoreBoard currScore={score} />
       {columns}
     </div>
   );

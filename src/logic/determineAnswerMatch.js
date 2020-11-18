@@ -1,14 +1,14 @@
 export const determineAnswerMatch = (keywords, answer) => {
+    console.log(keywords, answer);
     const answerMatchArray = [];
     for (let i = 0; i < answer.length; i++) {
         for (let j = 0; j < keywords.length; j++) {
             if (answer[i] === keywords[j]) {
-                console.log(answer[i]);
-                console.log(keywords[j]);
                 answerMatchArray.push(answer[i]);
             }
         }
     }
+    console.log(answerMatchArray.length - keywords.length === 0);
     return answerMatchArray.length - keywords.length === 0;
 }
 

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 class Timer extends Component {
     state = {
-        minutes: this.props.minutes,
-        seconds: this.props.seconds
+        minutes: this.props.minutes || 0,
+        seconds: this.props.seconds || 0
     }
 
     componentDidMount() {
