@@ -1,23 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import { connect, useDispatch, useSelector } from 'react-redux';
 
-import { connect } from 'react-redux';
-
-import GameBoardColumn from './GameBoard_components/GameBoardColumn';
-
+// Logic
 import generateCategoryIdSet from '../../../logic/generateCategoryIdSet';
-import ScoreBoard from './GameBoard_components/ScoreBoard';
+import {endRound} from '../../../actions/endRound';
 
-const GameBoardView = () => {
+// Custom Components
+import GameBoardColumn from './GameBoard_components/GameBoardColumn';
+import ScoreBoard from './GameBoard_components/ScoreBoard';
+import Timer from './GameBoard_components/Timer';
+import { setScore } from '../../../actions/countScore';
+
+const GameBoardView = (props) => {
   const ids = generateCategoryIdSet();
+  const round = useSelector(state => state.round);
+  const currScore = useSelector(state => state.score);
+  const dispatch = useDispatch();
+  const { number } = useParams();
+  const history = useHistory();
 
   const columns = ids.map((item, index) => {
-    return <GameBoardColumn categoryID={item} key={index} />;
+    return <GameBoardColumn categoryID={item} key={index} round={Number(number)} />;
   });
 
+  const roundEnd = () => {
+    dispatch(endRound());
+    dispatch(setScore(currScore));
+    history.push(`/round/${round + 1}`);
+  }
+  console.log(round, parseInt(number), currScore);
   return (
     <div className="flex justify-between items-center w-full space-x-4">
-      {/* <h1>Game Board Goes Here</h1> */}
-
+      <Timer minutes={6} seconds={30} class={{display: 'hidden'}} time={() => roundEnd()} />
+      <ScoreBoard currScore={currScore} />
       {columns}
     </div>
   );

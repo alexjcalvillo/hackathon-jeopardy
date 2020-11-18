@@ -1,9 +1,10 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setScore } from '../../../../actions/countScore';
 
-const ScoreBoard = () => {
-    const currScore = useSelector(state => state.score);
-    
+const ScoreBoard = ({currScore}) => {
+    const dispatch = useDispatch();
+    console.log(currScore);
     return (
         <div className="border rounded p-6">
             Scoreboard: {currScore}

@@ -4,7 +4,7 @@ const score = (state = defaultScore, action) => {
     console.log(action);
     switch(action.type) {
         case 'SET_SCORE':
-            return state;
+            return action.score;
         case 'ADD_POINTS':
             return state + action.PointValue;
         case 'SUBTRACT_POINTS':
