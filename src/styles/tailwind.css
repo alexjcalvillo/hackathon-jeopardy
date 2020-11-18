@@ -22744,6 +22744,34 @@ video {
   animation: bounce 1s infinite;
 }
 
+.action-btn {
+  border-width: 1px;
+  border-radius: 0.25rem;
+  width: 100%;
+  font-size: 1.875rem;
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem
+}
+
+.action-btn:hover {
+  --bg-opacity: 1;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #1a202c;
+  color: rgba(26, 32, 44, var(--text-opacity))
+}
+
+.action-btn:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

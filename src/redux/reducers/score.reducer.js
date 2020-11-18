@@ -1,7 +1,6 @@
 const defaultScore = 0;
 
 const score = (state = defaultScore, action) => {
-    console.log(action);
     switch(action.type) {
         case 'SET_SCORE':
             return action.score;

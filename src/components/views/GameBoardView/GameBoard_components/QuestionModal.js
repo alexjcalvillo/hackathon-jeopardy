@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import ActionButton from '../../../helpers/ActionButton';
 import { changeScore } from '../../../../actions/countScore';
 import Timer from './Timer';
 import { findKeywords, determineAnswerMatch } from '../../../../logic/determineAnswerMatch';
@@ -43,9 +42,9 @@ const QuestionModal = ({Question, Answer, PointValue, complete, open}) => {
                 placeholder="Please answer here..."
                 onChange={handleChange()}
             /><span>?</span>
-            <div onClick={() => submitAnswer()}>
-                <ActionButton text="Submit answer" />
-            </div>
+            <button onClick={() => submitAnswer()} className="action-btn">
+                Submit Answer
+            </button>
             <Timer time={(minutes, seconds) => checkTimer(minutes, seconds)} minutes={0} seconds={35} />
         </div>
     )

@@ -26,9 +26,10 @@ const FinalJeopardyView = () => {
             setClues(response.data[0]);
         });
     }, []);
-    
+
+    const regex = /((<|\/|i>|\\|\)|\(|\)))/gi;
     let PointValue = Number(wager);
-    const Answer = clues.answer;
+    const Answer = clues && clues.answer && clues.answer.replace(regex, '');
     const handleWager = (event) => {
         event.preventDefault();
         setWagerConfirmed(true);
@@ -77,8 +78,9 @@ const FinalJeopardyView = () => {
                             max={`${currScore}`}
                             required
                         />
-                        <button type="submit">
-                            <ActionButton text="confirm wager" status={wagerConfirmed} />
+                        <button type="submit" disabled={wagerConfirmed} className="action-btn">
+                            "Confirm Wager"
+                            {/* <ActionButton text="confirm wager" status={wagerConfirmed} /> */}
                         </button>
                     </form>
                 </div>

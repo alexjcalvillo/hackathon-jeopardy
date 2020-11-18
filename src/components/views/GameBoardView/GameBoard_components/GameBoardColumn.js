@@ -10,7 +10,8 @@ const GameBoardColumn = ({ categoryID, round }) => {
   useEffect(() => {
     getClues(categoryID);
   }, [round]);
-
+  
+  const regex = /((<|\/|i>|\\|\)|\(|\)))/gi;
   const getClues = async (categoryID) => {
     try {
       const { data } = await jService.get('/', {
@@ -40,9 +41,9 @@ const GameBoardColumn = ({ categoryID, round }) => {
         key={index}
         Type="Question"
         Category={category}
-        Question={clue.question}
+        Question={clue.question.replace(regex, '')}
         PointValue={clue.value * round}
-        Answer={clue.answer}
+        Answer={clue.answer.replace(regex, '')}
       />
     );
   });

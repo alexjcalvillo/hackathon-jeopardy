@@ -9,7 +9,7 @@ const GameCard = ({Type, Category, Question, Answer, PointValue}) => {
         const getClick = document.addEventListener('click', handleClick);
 
         return () => {
-            getClick();
+            document.removeEventListener('click', handleClick);
         }
     }, []);
 
