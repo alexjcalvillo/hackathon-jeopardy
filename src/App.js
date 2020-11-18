@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import GameBoardView from './components/views/GameBoardView/GameBoardView';
 import LandingView from './components/views/LandingPageView/LandingView';
+import FinalJeopardyView from './components/views/FinalJeopardyView/FinalJeopardyView';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
           <div className="flex space-x-10 border rounded h-full px-24 py-10 justify-between">
             <Switch>
               <Route exact path="/" component={LandingView} />
-              <Route exact path="/round/:number" component={GameBoardView} />
+              <Route path="/round/:number" component={GameBoardView} />
+              <Route path="/finaljeopardy" component={FinalJeopardyView} />
             </Switch>
           </div>
         </div>

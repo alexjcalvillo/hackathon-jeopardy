@@ -10,7 +10,7 @@ const score = (state = defaultScore, action) => {
         case 'SUBTRACT_POINTS':
             return state - action.PointValue;
         default:
-            return defaultScore;
+            return state;
     }
 }
 
