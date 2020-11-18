@@ -3,3 +3,13 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.action-btn {
+    @apply border rounded w-full text-3xl text-white py-2 my-4
+}
+.action-btn:hover {
+    @apply bg-white text-gray-900
+}
+.action-btn:focus {
+    @apply outline-none
+}

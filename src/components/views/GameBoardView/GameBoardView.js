@@ -9,8 +9,6 @@ import {endRound} from '../../../actions/endRound';
 // Custom Components
 import GameBoardColumn from './GameBoard_components/GameBoardColumn';
 import ScoreBoard from './GameBoard_components/ScoreBoard';
-import Timer from './GameBoard_components/Timer';
-import { setScore } from '../../../actions/countScore';
 
 const GameBoardView = (props) => {
   const ids = generateCategoryIdSet();
@@ -25,6 +23,9 @@ const GameBoardView = (props) => {
     const roundTimer = setInterval(() => {
       if (round === 2) {
         history.push('/finaljeopardy');
+        return () => {
+          clearInterval(roundTimer);
+        }
       } else {
         roundEnd();
       }
@@ -32,17 +33,17 @@ const GameBoardView = (props) => {
     return () => {
       clearInterval(roundTimer);
     };
-  }, [round]);
+  }, [number, round]);
 
   const columns = ids.map((item, index) => {
     return <GameBoardColumn categoryID={item} key={index} round={Number(number)} />;
   });
 
   const roundEnd = () => {
-    console.log(score);
     dispatch(endRound());
     history.push(`/round/${round + 1}`);
-  }
+  };
+  console.log(number);
   return (
     <div className="flex justify-between items-center w-full space-x-4">
       <ScoreBoard currScore={score} />

@@ -77,8 +77,9 @@ const FinalJeopardyView = () => {
                             max={`${currScore}`}
                             required
                         />
-                        <button type="submit">
-                            <ActionButton text="confirm wager" status={wagerConfirmed} />
+                        <button type="submit" disabled={wagerConfirmed} className="action-btn">
+                            "Confirm Wager"
+                            {/* <ActionButton text="confirm wager" status={wagerConfirmed} /> */}
                         </button>
                     </form>
                 </div>
