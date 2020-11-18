@@ -5,12 +5,12 @@ const round = (state = defaultRound, action) => {
   switch (action.type) {
     case 'ROUND_ONE':
       return state;
-    case 'ROUND_TWO':
-      return 2;
+    case 'NEXT_ROUND':
+      return state + 1;
     case 'ROUND_THREE':
       return 3;
     default:
-      return defaultRound;
+      return state;
   }
 };
 

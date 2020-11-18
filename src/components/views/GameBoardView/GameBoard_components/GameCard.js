@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import QuestionModal from './QuestionModal';
 
 const GameCard = ({ Type, Category, Question, Answer, PointValue }) => {
@@ -6,13 +7,15 @@ const GameCard = ({ Type, Category, Question, Answer, PointValue }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [complete, setComplete] = useState(false);
 
+  const currentRound = useSelector((state) => state.round);
+
   useEffect(() => {
     const getClick = document.addEventListener('click', handleClick);
 
     return () => {
-      getClick();
+      document.removeEventListener('click', handleClick);
     };
-  }, []);
+  }, [currentRound]);
 
   const handleClick = (event) => {
     if (outside.current.contains(event.target)) {
@@ -25,7 +28,7 @@ const GameCard = ({ Type, Category, Question, Answer, PointValue }) => {
   const handleComplete = () => {
     setComplete(true);
   };
-  console.log(complete);
+  //   console.log(complete);
   return (
     <>
       {/* This div is to create tinted background when modal opens*/}

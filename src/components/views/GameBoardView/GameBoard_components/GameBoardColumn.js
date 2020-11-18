@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import jService from '../../../../api/jService';
 import filterCluesWithValues from '../../../../logic/filterCluesWithValues';
 import GameCard from './GameCard';
@@ -7,9 +8,11 @@ const GameBoardColumn = ({ categoryID }) => {
   const [category, setCategory] = useState('');
   const [clues, setClues] = useState([]);
 
+  const currentRound = useSelector((state) => state.round);
+
   useEffect(() => {
     getClues(categoryID);
-  }, []);
+  }, [currentRound]);
 
   const getClues = async (categoryID) => {
     try {
@@ -41,7 +44,7 @@ const GameBoardColumn = ({ categoryID }) => {
         Type="Question"
         Category={category}
         Question={clue.question}
-        PointValue={clue.value}
+        PointValue={clue.value * currentRound}
         Answer={clue.answer}
       />
     );

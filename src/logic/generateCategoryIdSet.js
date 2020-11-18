@@ -1,6 +1,6 @@
 // This file exports a function that returns an array of 6 unique numbers
 
-// const badIDs = [149, 150, 237, 270, 300, 144];
+const badIDs = [149, 150, 237, 270, 300, 144];
 
 const generateCategoryIdSet = () => {
   const columnCategoryIds = new Set();
@@ -15,4 +15,23 @@ const generateCategoryIdSet = () => {
   return Array.from(columnCategoryIds);
 };
 
-export default generateCategoryIdSet;
+const categoryIDs = new Set();
+let i = 0;
+
+const recursiveGenerator = () => {
+  for (; i <= 5; ) {
+    let randomID = Math.floor(Math.random() * 500) + 1;
+
+    if (badIDs.includes(randomID)) {
+      return recursiveGenerator();
+    } else {
+      i++;
+      categoryIDs.add(randomID);
+    }
+  }
+  return Array.from(categoryIDs);
+};
+
+// export default generateCategoryIdSet;
+
+export default recursiveGenerator;
