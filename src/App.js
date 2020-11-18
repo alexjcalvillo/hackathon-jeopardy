@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import GameBoardView from './components/views/GameBoardView/GameBoardView';
 import LandingView from './components/views/LandingPageView/LandingView';
 import FinalJeopardyView from './components/views/FinalJeopardyView/FinalJeopardyView';
+import EndGame from './components/views/EndGameView/EndGame';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
               <Route exact path="/" component={LandingView} />
               <Route path="/round/:number" component={GameBoardView} />
               <Route path="/finaljeopardy" component={FinalJeopardyView} />
+              <Route exact path="/endgame" component={EndGame} />
             </Switch>
           </div>
         </div>

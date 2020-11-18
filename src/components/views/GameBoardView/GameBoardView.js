@@ -4,7 +4,7 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 
 // Logic
 import generateCategoryIdSet from '../../../logic/generateCategoryIdSet';
-import {endRound} from '../../../actions/endRound';
+import { endRound } from '../../../actions/endRound';
 
 // Custom Components
 import GameBoardColumn from './GameBoard_components/GameBoardColumn';
@@ -12,25 +12,27 @@ import ScoreBoard from './GameBoard_components/ScoreBoard';
 
 const GameBoardView = (props) => {
   const ids = generateCategoryIdSet();
-  const round = useSelector(state => state.round);
-  const score = useSelector(state => state.score);
+  const round = useSelector((state) => state.round);
+  const score = useSelector((state) => state.score);
   const dispatch = useDispatch();
   // const { number } = useParams();
   const history = useHistory();
-  const timerLength = 1000 * 20// 1000 * 60 * 6.5;
+  const timerLength = 1000 * 20; // 1000 * 60 * 6.5;
 
   useEffect(() => {
     const roundTimer = setInterval(() => {
-      if (round > 1) {
+      if (round > 1 && score > 0) {
         history.push('/finaljeopardy');
         return () => {
           clearInterval(roundTimer);
-        }
+        };
+      } else if (round > 1 && score < 0) {
+        history.push('/endgame');
       } else {
         roundEnd();
       }
     }, timerLength);
-    
+
     return () => {
       clearInterval(roundTimer);
     };
