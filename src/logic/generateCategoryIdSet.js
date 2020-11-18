@@ -1,6 +1,30 @@
 // This file exports a function that returns an array of 6 unique numbers
 
-const badIDs = [149, 150, 237, 270, 300, 144];
+const badIDs = [
+  149,
+  147,
+  150,
+  237,
+  270,
+  300,
+  144,
+  336,
+  69,
+  488,
+  479,
+  483,
+  263,
+  44,
+  116,
+  15,
+  93,
+  195,
+  403,
+  282,
+  464,
+  61,
+  423,
+];
 
 const generateCategoryIdSet = () => {
   const columnCategoryIds = new Set();

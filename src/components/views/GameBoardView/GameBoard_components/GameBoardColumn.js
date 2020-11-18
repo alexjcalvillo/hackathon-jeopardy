@@ -4,6 +4,8 @@ import jService from '../../../../api/jService';
 import filterCluesWithValues from '../../../../logic/filterCluesWithValues';
 import GameCard from './GameCard';
 
+const regex = /((<|\/|i>|\\))/gi;
+
 const GameBoardColumn = ({ categoryID }) => {
   const [category, setCategory] = useState('');
   const [clues, setClues] = useState([]);
@@ -45,7 +47,7 @@ const GameBoardColumn = ({ categoryID }) => {
         Category={category}
         Question={clue.question}
         PointValue={clue.value * currentRound}
-        Answer={clue.answer}
+        Answer={clue.answer.replace(regex, '')}
       />
     );
   });

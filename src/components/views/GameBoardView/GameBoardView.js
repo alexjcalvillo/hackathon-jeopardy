@@ -22,7 +22,7 @@ const GameBoardView = () => {
       } else {
         dispatch({ type: 'NEXT_ROUND' });
       }
-    }, 1000 * 15);
+    }, 1000 * 5);
 
     return () => {
       clearInterval(roundTimer);
