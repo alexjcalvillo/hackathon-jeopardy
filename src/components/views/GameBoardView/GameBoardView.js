@@ -16,16 +16,16 @@ const GameBoardView = (props) => {
   const score = useSelector((state) => state.score);
   const dispatch = useDispatch();
   const history = useHistory();
-  const timerLength = 1000 * 20; // 1000 * 60 * 6.5;
+  const timerLength = 1000 * 30; // 1000 * 60 * 6.5;
 
   useEffect(() => {
     const roundTimer = setInterval(() => {
-      if (round > 1 && score > 0) {
+      if (round > 2 && score > 0) {
         history.push('/finaljeopardy');
         return () => {
           clearInterval(roundTimer);
         };
-      } else if (round > 1 && score < 0) {
+      } else if (round >= 2 && score <= 0) {
         history.push('/endgame');
       } else {
         roundEnd();

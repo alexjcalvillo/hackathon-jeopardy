@@ -9,14 +9,23 @@ const EndGame = (props) => {
   const score = useSelector((state) => state.score);
 
   const startNewGame = () => {
+    clearReducers();
+    history.push('/round/1');
+  };
+
+  const goHome = () => {
+    clearReducers();
+
+    history.push('/');
+  };
+
+  const clearReducers = () => {
     dispatch({
       type: 'NEW_GAME',
     });
     dispatch({
       type: 'CLEAR_SCORE',
     });
-
-    history.push('/round/1');
   };
 
   return (
@@ -31,9 +40,8 @@ const EndGame = (props) => {
         <p>Would you like to start a new game?</p>
         <div>
           <ActionButton text="New Game" onClick={startNewGame} />
-          <Link to="/">
-            <ActionButton text="Home Page" />
-          </Link>
+
+          <ActionButton text="Home Page" onClick={goHome} />
         </div>
       </div>
     </div>
