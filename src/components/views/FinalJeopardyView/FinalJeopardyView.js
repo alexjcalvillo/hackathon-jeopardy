@@ -88,7 +88,7 @@ const FinalJeopardyView = () => {
     console.log(keywords, answerWords);
     return determineAnswerMatch(keywords, answerWords);
   };
-  console.log(answer, clues);
+
   return (
     <div className="w-full border">
       {gameOver ? (
@@ -112,16 +112,19 @@ const FinalJeopardyView = () => {
               max={`${currScore}`}
               required
             />
-            <button
-              type="submit"
-              disabled={wagerConfirmed}
-              className={`action-btn ${
-                wagerConfirmed ? 'cursor-not-allowed' : ''
-              } `}
-            >
-              Confirm Wager
-              {/* <ActionButton text="confirm wager" status={wagerConfirmed} /> */}
-            </button>
+
+            {!wagerConfirmed && (
+              <button
+                type="submit"
+                disabled={wagerConfirmed}
+                className={`action-btn ${
+                  wagerConfirmed ? 'cursor-not-allowed' : ''
+                } `}
+              >
+                Confirm Wager
+                {/* <ActionButton text="confirm wager" status={wagerConfirmed} /> */}
+              </button>
+            )}
           </form>
         </div>
         {clues && clues.category && (
@@ -145,8 +148,10 @@ const FinalJeopardyView = () => {
           />
           <span>?</span>
           <div className="mx-auto w-1/4" onClick={() => submitAnswer()}>
-            {gameOver && <p>Correct Answer: {clues.answer}</p>}
-            <ActionButton text="Submit Answer" status={gameOver} />
+            {gameOver && <p className="mt-4">Correct Answer: {clues.answer}</p>}
+            {!gameOver && (
+              <ActionButton text="Submit Answer" status={gameOver} />
+            )}
           </div>
 
           {!gameOver && <Timer seconds={30} time={() => timeCheck()} />}

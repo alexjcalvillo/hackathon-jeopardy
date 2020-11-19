@@ -21,11 +21,14 @@ const EndGame = (props) => {
   };
 
   return (
-    <div className="flex justify-between items-center w-full space-x-4 p-2">
-      <h4 className="text-6xl text-white font-bold tracking-tighter">
-        Your final score is {score}
-      </h4>
-      <div>
+    <div className="p-2">
+      <div className="w-1/3 items-center w-full space-x-4 p-2">
+        <h4 className="text-6xl text-white font-bold tracking-tighter">
+          Your final score is {score}
+        </h4>
+      </div>
+
+      <div className="items-center w-full space-x-4 p-2">
         <p>Would you like to start a new game?</p>
         <div>
           <ActionButton text="New Game" onClick={startNewGame} />
