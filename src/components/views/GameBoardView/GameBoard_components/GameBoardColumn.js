@@ -10,11 +10,11 @@ const GameBoardColumn = ({ categoryID, round }) => {
   useEffect(() => {
     getClues(categoryID);
   }, [round]);
-  
+
   const regex = /((<|\/|i>|\\|\)|\(|\)))/gi;
   const getClues = async (categoryID) => {
     try {
-      const { data } = await jService.get('/', {
+      const { data } = await jService.get('/category', {
         params: {
           id: categoryID,
         },

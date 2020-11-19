@@ -5,6 +5,8 @@ import ActionButton from '../../helpers/ActionButton';
 import EndGame from '../EndGameView/EndGame';
 import Timer from '../GameBoardView/GameBoard_components/Timer';
 import axios from 'axios';
+import jService from '../../../api/jService';
+
 import {
   determineAnswerMatch,
   findKeywords,
@@ -23,16 +25,34 @@ const FinalJeopardyView = () => {
   const history = useHistory();
 
   useEffect(() => {
-    axios
-      .get('http://jservice.io/api/random', {
+    if (!gameOver) {
+      getFinalClue();
+    }
+
+    // axios
+    //   .get('http://jservice.io/api/random', {
+    //     params: {
+    //       count: 1,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     setClues(response.data[0]);
+    //   });
+  }, [gameOver]);
+
+  const getFinalClue = async () => {
+    try {
+      const { data } = await jService.get('/random', {
         params: {
           count: 1,
         },
-      })
-      .then((response) => {
-        setClues(response.data[0]);
       });
-  }, []);
+
+      setClues(data[0]);
+    } catch (error) {
+      console.log('There was a problem getting the final clue:', error);
+    }
+  };
 
   const regex = /((<|\/|i>|\\|\)|\(|\)))/gi;
   let PointValue = Number(wager);
@@ -125,6 +145,7 @@ const FinalJeopardyView = () => {
           />
           <span>?</span>
           <div className="mx-auto w-1/4" onClick={() => submitAnswer()}>
+            {gameOver && <p>Correct Answer: {clues.answer}</p>}
             <ActionButton text="Submit Answer" status={gameOver} />
           </div>
 
