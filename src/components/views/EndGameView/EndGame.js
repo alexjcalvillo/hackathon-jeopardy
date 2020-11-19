@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
-import { connect, useDispatch, useSelector } from 'react-redux';
-
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import ActionButton from '../../helpers/ActionButton';
 
 const EndGame = (props) => {

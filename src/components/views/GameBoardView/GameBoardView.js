@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
 
 // Logic
@@ -15,7 +15,6 @@ const GameBoardView = (props) => {
   const round = useSelector((state) => state.round);
   const score = useSelector((state) => state.score);
   const dispatch = useDispatch();
-  // const { number } = useParams();
   const history = useHistory();
   const timerLength = 1000 * 20; // 1000 * 60 * 6.5;
 
@@ -44,9 +43,8 @@ const GameBoardView = (props) => {
 
   const roundEnd = () => {
     dispatch(endRound());
-    // history.push(`/round/${round + 1}`);
   };
-  // console.log(number);
+
   return (
     <div className="flex justify-between items-center w-full space-x-4">
       <ScoreBoard currScore={score} />

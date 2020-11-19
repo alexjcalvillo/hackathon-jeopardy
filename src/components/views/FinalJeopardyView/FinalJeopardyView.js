@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import ActionButton from '../../helpers/ActionButton';
 import EndGame from '../EndGameView/EndGame';
 import Timer from '../GameBoardView/GameBoard_components/Timer';
-import axios from 'axios';
 import jService from '../../../api/jService';
 
 import {
@@ -22,22 +21,11 @@ const FinalJeopardyView = () => {
   const [clues, setClues] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     if (!gameOver) {
       getFinalClue();
     }
-
-    // axios
-    //   .get('http://jservice.io/api/random', {
-    //     params: {
-    //       count: 1,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     setClues(response.data[0]);
-    //   });
   }, [gameOver]);
 
   const getFinalClue = async () => {

@@ -9,13 +9,13 @@ const filterCluesWithValues = (clues, category) => {
   return sortCluesByValue(validClues, category);
 };
 
-const filterCluesUnder5Questions = (clues, category) => {
-  const enoughClues = clues.filter((clues) => {
-    return clues.length > 10;
-  });
+// const filterCluesUnder5Questions = (clues, category) => {
+//   const enoughClues = clues.filter((clues) => {
+//     return clues.length > 10;
+//   });
 
-  return sortCluesByValue(enoughClues, category);
-};
+//   return sortCluesByValue(enoughClues, category);
+// };
 
 const sortCluesByValue = (clues, category) => {
   const sortedClues = {
