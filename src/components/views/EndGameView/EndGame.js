@@ -21,10 +21,7 @@ const EndGame = (props) => {
   };
 
   return (
-    <div className="flex justify-between items-center w-full space-x-4">
-      <h1 className="text-6xl text-white font-bold tracking-tighter">
-        Game Over!
-      </h1>
+    <div className="flex justify-between items-center w-full space-x-4 p-2">
       <h4 className="text-6xl text-white font-bold tracking-tighter">
         Your final score is {score}
       </h4>

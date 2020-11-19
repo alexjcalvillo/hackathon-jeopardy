@@ -3,7 +3,7 @@ import React from 'react';
 const ActionButton = (props) => {
   return (
     <button
-      className="action-btn"
+      className={`action-btn ${props.status ? 'cursor-not-allowed' : null} `}
       disabled={props.status}
       onClick={props.onClick}
     >
